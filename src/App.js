@@ -13,14 +13,9 @@ const createStoreWithMiddleware = applyMiddleware(
 
 
 const store = createStoreWithMiddleware(randomHero);
-// console.log(startRandom);
 
-// var  data = getRandom();
-// data.then( (res) => { console.log(res)} );
-// console.log(data);
 store.dispatch( getRandom() );
 store.subscribe( () => {
-	console.log('xxxxxxxxxxxxxxxxxxxxxxx');
 	console.log( store.getState() );
 } );
 export default class DotaRandomApp extends Component {
