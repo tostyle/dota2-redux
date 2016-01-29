@@ -8,9 +8,10 @@ export function randomHero( state = {
 	{
 		case FINISH_RANDOM:
 			return {...state,
-						hero : action.hero.heroes[0]};
+						hero : action.hero.heroes[0],
+						isFetching: false
+					};
 		case GET_RANDOM: 
-			console.log(action.hero);
 			return {...state,
 						hero : action.hero};
 		case START_RANDOM:

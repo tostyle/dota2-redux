@@ -1,13 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
-export default class Hero extends Component {
+class Hero extends Component {
   render() {
-    // const { value, onChange, options } = this.props
-
+   
+    const { getRandomHero } = this.props
     return (
       <div>
-        <button>Random Hero</button>
+        <button onClick={ getRandomHero }>Random Hero</button>
       </div>
     )
   }
 }
+Hero.propTypes = {
+  getRandomHero: PropTypes.func.isRequired
+}
+
+export default Hero

@@ -1,28 +1,38 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import Hero from './Hero'
+import HeroDetail from './HeroDetail'
 
 import { getRandom,fetchPostsIfNeeded } from './action';
 
 function mamState(state)
 {
-	const { isFetching, hero } = state
-	return 	{
-		isFetching : false,
-		hero : {}
+
+	return state;
+}
+function mamDispatch(dispatch)
+{
+	return {
+		getRandomHero : () => dispatch( getRandom() )
 	}
 }
 
-export default class DotaRandomApp extends Component {
+class DotaRandomApp extends Component {
   render() { 
-  	console.log(this.context);
+  	const { getRandomHero , hero , isFetching } = this.props;
     return (
     <div>
       <h1>Hello, world. </h1>
-      <Hero / >
+      <HeroDetail 
+      	hero={hero} 
+      	isFetching={isFetching} />
+      <Hero getRandomHero={getRandomHero} / >
     </div>
     );
   }
 }
-DotaRandomApp.contextTypes = {
-	store: React.PropTypes.object
-};
+// DotaRandomApp.contextTypes = {
+// 	store: React.PropTypes.object
+// };
+
+export default connect(mamState,mamDispatch)(DotaRandomApp)
