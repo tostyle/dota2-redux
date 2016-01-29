@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
-import { createStore,applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk'
-import createLogger from 'redux-logger'
+import Hero from './Hero'
+
 import { getRandom,fetchPostsIfNeeded } from './action';
-import { randomHero } from './reducer';
 
+function mamState(state)
+{
+	const { isFetching, hero } = state
+	return 	{
+		isFetching : false,
+		hero : {}
+	}
+}
 
-const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware,
-  createLogger()
-)(createStore)
-
-
-const store = createStoreWithMiddleware(randomHero);
-
-store.dispatch( getRandom() );
-store.subscribe( () => {
-	console.log( store.getState() );
-} );
 export default class DotaRandomApp extends Component {
-  render() {
+  render() { 
+  	console.log(this.context);
     return (
-      <h1>Hello, world.sss </h1>
+    <div>
+      <h1>Hello, world. </h1>
+      <Hero / >
+    </div>
     );
   }
 }
+DotaRandomApp.contextTypes = {
+	store: React.PropTypes.object
+};
